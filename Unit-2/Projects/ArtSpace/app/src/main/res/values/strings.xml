@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">ArtSpace</string>
+    <string name="app_name" translatable="false">Art Space</string>
+    <string name="losyash">Лосяш</string>
+    <string name="losyash_info">Умный лось из Смешариков</string>
+    <string name="barash">Бараш</string>
+    <string name="barash_info">Депрессивный баран из Смешариков</string>
+    <string name="krosh">Крош</string>
+    <string name="krosh_info">Озорной кролик из Смешариков</string>
+    <string name="yozhik">Ежик</string>
+    <string name="yozhik_info">Стеснительный ежик из Смешариков</string>
 </resources>
