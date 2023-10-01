@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,6 +15,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccountBox
+import androidx.compose.material.icons.rounded.Call
+import androidx.compose.material.icons.rounded.Email
+import androidx.compose.material.icons.rounded.Share
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -39,6 +43,7 @@ class MainActivity : ComponentActivity() {
                     color = Color(0x9E00FF66)
                 ) {
                     Header()
+                    Footer()
                 }
             }
         }
@@ -80,10 +85,65 @@ fun Header() {
     }
 }
 
+@Composable
+fun Footer() {
+    val phone = stringResource(R.string.phone)
+    val tg = stringResource(R.string.tg)
+    val email = stringResource(R.string.email)
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(bottom = 32.dp),
+        contentAlignment = Alignment.BottomCenter
+    ) {
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.Bottom,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(bottom = 8.dp)
+            ) {
+                Icon(
+                    Icons.Rounded.Call,
+                    contentDescription = "description",
+                    modifier = Modifier.padding(end = 4.dp)
+                )
+                Text(text = phone)
+            }
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(bottom = 8.dp)
+            ) {
+                Icon(
+                    Icons.Rounded.Share,
+                    contentDescription = "description",
+                    modifier = Modifier.padding(end = 4.dp)
+                )
+                Text(text = tg)
+            }
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(bottom = 8.dp)
+            ) {
+                Icon(
+                    Icons.Rounded.Email,
+                    contentDescription = "description",
+                    modifier = Modifier.padding(end = 4.dp)
+                )
+                Text(text = email)
+            }
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun BusinessCardPreview() {
     BusinessCardTheme {
         Header()
+        Footer()
     }
 }
