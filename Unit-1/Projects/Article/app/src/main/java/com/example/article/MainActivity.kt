@@ -40,22 +40,24 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ArticleApp(modifier: Modifier = Modifier) {
     val title = stringResource(R.string.title)
-    val shortDescription = stringResource(R.string.short_text)
-    val longDescription = stringResource(R.string.long_text)
+    val shortText = stringResource(R.string.short_text)
+    val longText = stringResource(R.string.long_text)
+    val image = painterResource(R.drawable.bg)
 
     Column(modifier = modifier) {
+        Image(painter = image, contentDescription = null)
         Text(
             text = title,
             modifier = Modifier.padding(16.dp),
             fontSize = 24.sp
         )
         Text(
-            text = shortDescription,
+            text = shortText,
             modifier = Modifier.padding(start = 16.dp, end = 16.dp),
             textAlign = TextAlign.Justify
         )
         Text(
-            text = longDescription,
+            text = longText,
             modifier = Modifier.padding(16.dp),
             textAlign = TextAlign.Justify
         )
