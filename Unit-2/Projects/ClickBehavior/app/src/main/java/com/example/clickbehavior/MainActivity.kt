@@ -17,6 +17,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -34,7 +38,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Card()
+                    App()
                 }
             }
         }
@@ -42,11 +46,67 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Card(modifier: Modifier = Modifier) {
-    val text = R.string.lemon_select
-    val image = R.drawable.lemon_tree
-    val description = R.string.lemon_tree_content_description
+fun App() {
+    var currentStep by remember { mutableStateOf(1) }
+    var squeezeCount by remember { mutableStateOf(0) }
 
+    Box(
+        modifier = Modifier.fillMaxSize(),
+    ) {
+        when (currentStep) {
+            1 -> {
+                Card(
+                    text = R.string.lemon_select,
+                    image = R.drawable.lemon_tree,
+                    description = R.string.lemon_tree_content_description,
+                    onImageClick = {
+                        currentStep = 2
+                        squeezeCount = (2..4).random()
+                    }
+                )
+            }
+            2 -> {
+                Card(
+                    text = R.string.lemon_squeeze,
+                    image = R.drawable.lemon_squeeze,
+                    description = R.string.lemon_content_description,
+                    onImageClick = {
+                        squeezeCount--
+                        if (squeezeCount == 0) {
+                            currentStep = 3
+                        }
+                    }
+                )
+            }
+
+            3 -> {
+                Card(
+                    text = R.string.lemon_drink,
+                    image = R.drawable.lemon_drink,
+                    description = R.string.lemonade_content_description,
+                    onImageClick = { currentStep = 4 }
+                )
+            }
+            4 -> {
+                Card(
+                    text = R.string.lemon_empty_glass,
+                    image = R.drawable.lemon_restart,
+                    description = R.string.empty_glass_content_description,
+                    onImageClick = { currentStep = 1 }
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun Card(
+    text: Int,
+    image: Int,
+    description: Int,
+    onImageClick: () -> Unit,
+    modifier: Modifier = Modifier)
+{
     Box(
         modifier = modifier
     ) {
@@ -55,14 +115,14 @@ fun Card(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxSize()
         ) {
-            Button(onClick = {}) {
+            Button(onClick = onImageClick) {
                 Image(
                     painter = painterResource(image),
                     contentDescription = stringResource(description),
                     modifier = Modifier
                         .width(128.dp)
                         .height(160.dp)
-                        .padding(24.dp)
+                        .padding(16.dp)
                 )
             }
             Spacer(modifier = Modifier.height(32.dp))
@@ -78,6 +138,6 @@ fun Card(modifier: Modifier = Modifier) {
 @Composable
 fun ClickBehaviorPreview() {
     ClickBehaviorTheme {
-        Card()
+        App()
     }
 }
