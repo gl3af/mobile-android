@@ -6,7 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -31,7 +33,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Card()
+                    Layout()
                 }
             }
         }
@@ -39,11 +41,46 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun Card(modifier: Modifier = Modifier) {
-    val title = stringResource(R.string.first_title)
-    val description = stringResource(R.string.first_text)
-    val backgroundColor = Color(0xFFEADDFF)
+fun Layout() {
+    Column(Modifier.fillMaxWidth()) {
+        Row(Modifier.weight(1f)) {
+            Card(
+                title = stringResource(R.string.first_title),
+                description = stringResource(R.string.first_text),
+                backgroundColor = Color(0xFFEADDFF),
+                modifier = Modifier.weight(1f)
+            )
+            Card(
+                title = stringResource(R.string.second_title),
+                description = stringResource(R.string.second_text),
+                backgroundColor = Color(0xFFD0BCFF),
+                modifier = Modifier.weight(1f)
+            )
+        }
+        Row(Modifier.weight(1f)) {
+            Card(
+                title = stringResource(R.string.third_title),
+                description = stringResource(R.string.third_text),
+                backgroundColor = Color(0xFFB69DF8),
+                modifier = Modifier.weight(1f)
+            )
+            Card(
+                title = stringResource(R.string.fourth_title),
+                description = stringResource(R.string.fourth_text),
+                backgroundColor = Color(0xFFF6EDFF),
+                modifier = Modifier.weight(1f)
+            )
+        }
+    }
+}
 
+@Composable
+private fun Card(
+    title: String,
+    description: String,
+    backgroundColor: Color,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -68,6 +105,6 @@ private fun Card(modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     QuadrantTheme {
-        Card()
+        Layout()
     }
 }
