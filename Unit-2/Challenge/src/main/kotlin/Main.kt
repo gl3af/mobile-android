@@ -192,14 +192,25 @@ fun main() {
         SmartLightDevice(deviceName = "Google light", deviceCategory = "Utility")
     )
 
+    smartHome.printSmartTvInfo()
+    smartHome.printSmartLightInfo()
+    println()
+
     smartHome.turnOnTv()
     smartHome.turnOnLight()
     println("Total number of devices currently turned on: ${smartHome.deviceTurnOnCount}")
     println()
 
     smartHome.increaseTvVolume()
+    smartHome.decreaseTvVolume()
+    println()
+
     smartHome.changeTvChannelToNext()
+    smartHome.changeTvChannelToPrevious()
+    println()
+
     smartHome.increaseLightBrightness()
+    smartHome.decreaseLightBrightness()
     println()
 
     smartHome.turnOffAllDevices()
