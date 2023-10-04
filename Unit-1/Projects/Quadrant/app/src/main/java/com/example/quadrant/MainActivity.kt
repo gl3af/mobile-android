@@ -48,7 +48,7 @@ fun Layout() {
                 title = stringResource(R.string.first_title),
                 description = stringResource(R.string.first_text),
                 backgroundColor = Color(0xFFEADDFF),
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(0.5f)
             )
             Card(
                 title = stringResource(R.string.second_title),
