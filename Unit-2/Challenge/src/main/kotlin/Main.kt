@@ -108,11 +108,15 @@ class SmartHome(val smartTvDevice: SmartTvDevice, val smartLightDevice: SmartLig
     }
 
     fun increaseTvVolume() {
-        smartTvDevice.increaseSpeakerVolume()
+        if (smartTvDevice.deviceStatus == "on") {
+            smartTvDevice.increaseSpeakerVolume()
+        }
     }
 
     fun changeTvChannelToNext() {
-        smartTvDevice.nextChannel()
+        if (smartTvDevice.deviceStatus == "on") {
+            smartTvDevice.nextChannel()
+        }
     }
 
     fun turnOnLight() {
@@ -126,7 +130,9 @@ class SmartHome(val smartTvDevice: SmartTvDevice, val smartLightDevice: SmartLig
     }
 
     fun increaseLightBrightness() {
-        smartLightDevice.increaseBrightness()
+        if (smartLightDevice.deviceStatus == "on") {
+            smartLightDevice.increaseBrightness()
+        }
     }
 
     fun turnOffAllDevices() {
