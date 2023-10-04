@@ -113,9 +113,21 @@ class SmartHome(val smartTvDevice: SmartTvDevice, val smartLightDevice: SmartLig
         }
     }
 
+    fun decreaseTvVolume() {
+        if (smartTvDevice.deviceStatus == "on") {
+            smartTvDevice.decreaseSpeakerVolume()
+        }
+    }
+
     fun changeTvChannelToNext() {
         if (smartTvDevice.deviceStatus == "on") {
             smartTvDevice.nextChannel()
+        }
+    }
+
+    fun changeTvChannelToPrevious() {
+        if (smartTvDevice.deviceStatus == "on") {
+            smartTvDevice.previousChannel()
         }
     }
 
@@ -135,9 +147,23 @@ class SmartHome(val smartTvDevice: SmartTvDevice, val smartLightDevice: SmartLig
         }
     }
 
+    fun decreaseLightBrightness() {
+        if (smartLightDevice.deviceStatus == "on") {
+            smartLightDevice.decreaseBrightness()
+        }
+    }
+
     fun turnOffAllDevices() {
         turnOffTv()
         turnOffLight()
+    }
+
+    fun printSmartTvInfo() {
+        smartTvDevice.printDeviceInfo()
+    }
+
+    fun printSmartLightInfo() {
+        smartLightDevice.printDeviceInfo()
     }
 }
 
