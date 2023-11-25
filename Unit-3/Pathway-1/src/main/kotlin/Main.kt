@@ -25,4 +25,6 @@ fun main(args: Array<String>) {
     val daypartGroupedEvents = events.groupBy { event -> event.daypart }
     daypartGroupedEvents.forEach {(daypart, events) ->
         println("${daypart}: ${events.size} events") }
+
+    println("Last event of the day: ${events.last().title}")
 }
