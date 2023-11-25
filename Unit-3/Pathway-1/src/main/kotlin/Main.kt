@@ -18,4 +18,7 @@ fun main(args: Array<String>) {
     val event6 = Event(title = "Check out latest Android Jetpack library", daypart = Daypart.EVENING, durationInMinutes = 45)
 
     val events = mutableListOf<Event>(event1, event2, event3, event4, event5, event6)
+
+    val shortEvents = events.filter { event: Event -> event.durationInMinutes < 60}
+    print("You have ${shortEvents.size} short events")
 }
