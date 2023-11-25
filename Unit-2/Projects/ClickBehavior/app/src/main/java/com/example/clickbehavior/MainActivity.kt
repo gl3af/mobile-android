@@ -60,7 +60,7 @@ fun App() {
                     image = R.drawable.lemon_tree,
                     description = R.string.lemon_tree_content_description,
                     onImageClick = {
-                        currentStep = 2
+                        currentStep++;
                         squeezeCount = (2..4).random()
                     }
                 )
@@ -73,7 +73,7 @@ fun App() {
                     onImageClick = {
                         squeezeCount--
                         if (squeezeCount == 0) {
-                            currentStep = 3
+                            currentStep++;
                         }
                     }
                 )
@@ -84,7 +84,7 @@ fun App() {
                     text = R.string.lemon_drink,
                     image = R.drawable.lemon_drink,
                     description = R.string.lemonade_content_description,
-                    onImageClick = { currentStep = 4 }
+                    onImageClick = { currentStep++; }
                 )
             }
             4 -> {
