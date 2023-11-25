@@ -20,5 +20,9 @@ fun main(args: Array<String>) {
     val events = mutableListOf<Event>(event1, event2, event3, event4, event5, event6)
 
     val shortEvents = events.filter { event: Event -> event.durationInMinutes < 60}
-    print("You have ${shortEvents.size} short events")
+    println("You have ${shortEvents.size} short events")
+
+    val daypartGroupedEvents = events.groupBy { event -> event.daypart }
+    daypartGroupedEvents.forEach {(daypart, events) ->
+        println("${daypart}: ${events.size} events") }
 }
