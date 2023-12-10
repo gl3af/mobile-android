@@ -30,7 +30,10 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -62,10 +65,40 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SuperheroesApp() {
-    val heroes = HeroesRepository.heroes
-    HeroesList(heroes = heroes)
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        topBar = {
+            TopAppBar()
+        }
+    ) {
+        val heroes = HeroesRepository.heroes
+        HeroesList(heroes = heroes, contentPadding = it)
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopAppBar(modifier: Modifier = Modifier) {
+    CenterAlignedTopAppBar(
+        title = {
+            Text(
+                text = stringResource(R.string.app_name),
+                style = MaterialTheme.typography.displayLarge,
+            )
+        },
+        modifier = modifier
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SuperHeroesPreview() {
+    SuperheroesTheme {
+        SuperheroesApp()
+    }
 }
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -155,7 +188,7 @@ fun HeroListItem(
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun SuperheroesPreview() {
     SuperheroesTheme {
         SuperheroesApp()
     }
