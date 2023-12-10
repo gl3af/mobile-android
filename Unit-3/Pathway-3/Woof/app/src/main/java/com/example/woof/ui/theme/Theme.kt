@@ -1,9 +1,12 @@
 package com.example.woof.ui.theme
 
+import AbrilFatface
+import Montserrat
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -13,9 +16,12 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.text.font.FontWeight
 import androidx.core.view.WindowCompat
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.sp
 
-private val LightColors = lightColorScheme(
+private val lightColors = lightColorScheme(
     primary = md_theme_light_primary,
     onPrimary = md_theme_light_onPrimary,
     primaryContainer = md_theme_light_primaryContainer,
@@ -48,7 +54,7 @@ private val LightColors = lightColorScheme(
 )
 
 
-private val DarkColors = darkColorScheme(
+private val darkColors = darkColorScheme(
     primary = md_theme_dark_primary,
     onPrimary = md_theme_dark_onPrimary,
     primaryContainer = md_theme_dark_primaryContainer,
@@ -80,6 +86,29 @@ private val DarkColors = darkColorScheme(
     scrim = md_theme_dark_scrim,
 )
 
+val Typography = Typography(
+    displayLarge = TextStyle(
+        fontFamily = AbrilFatface,
+        fontWeight = FontWeight.Normal,
+        fontSize = 36.sp
+    ),
+    displayMedium = TextStyle(
+        fontFamily = Montserrat,
+        fontWeight = FontWeight.Bold,
+        fontSize = 20.sp
+    ),
+    labelSmall = TextStyle(
+        fontFamily = Montserrat,
+        fontWeight = FontWeight.Bold,
+        fontSize = 14.sp
+    ),
+    bodyLarge = TextStyle(
+        fontFamily = Montserrat,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp
+    )
+)
+
 @Composable
 fun WoofTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
@@ -92,8 +121,8 @@ fun WoofTheme(
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
 
-        darkTheme -> DarkColors
-        else -> LightColors
+        darkTheme -> darkColors
+        else -> lightColors
     }
     val view = LocalView.current
     if (!view.isInEditMode) {
